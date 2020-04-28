@@ -5,8 +5,8 @@ import time
 print ("### Hello and welcome to VAC bot ### \n")
 HOST = "irc.twitch.tv"      
 CHANNEL = input("What channel would you like to join? ").lower()
-NICK = "wandererocular"
-PASS = "oauth:wq5hz0ckho233q88ik27wdjchs9pt8"
+NICK = input("User to login as").lower()
+PASS = input("Auth for user").lower()
 
 ### Sends a message to the chatroom ###
 def sendMessage(s,message):
@@ -27,6 +27,11 @@ def join():
         if text.find("/NAMES list") != -1:
             s.send(("PRIVMSG #" + CHANNEL + " :Joined\n").encode())
             return s
+
+#curl --request POST "https://id.twitch.tv/oauth2/token?client_id=1l33ecasfqtaj656lrrsv5ogdn5e4c&client_secret=y3cxld2p5ywggpqes6cz85s7lh2rq5&grant_type=client_credentials"
+
+#curl -X POST "https://id.twitch.tv/oauth2/token?client_id=1l33ecasfqtaj656lrrsv5ogdn5e4c&client_secret=y3cxld2p5ywggpqes6cz85s7lh2rq5&code=v7x68q313wvg5i8i2h5j934o78xe4o&grant_type=authorization_code&redirect_uri=http://localhost
+
 
 def counter(s):
     number = 0
@@ -63,5 +68,6 @@ def counter(s):
 
 if __name__ == '__main__':
     s = join()
-    counter(s)
+    while True:
+        counter(s)
     
